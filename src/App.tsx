@@ -1,28 +1,18 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
+ * Dance Player
+ * https://github.com/magcrider/DancePlayer
  *
  * @format
  */
 
-import React, { useEffect, useState } from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-  Button,
-  ActivityIndicator,
-} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {SafeAreaView, StyleSheet, ActivityIndicator} from 'react-native';
 import TrackPlayer from 'react-native-track-player';
-import { setupPlayer, addTracks } from './trackPlayerServices';
+
+import {setupPlayer, addTracks} from './trackPlayerServices';
+import Playlist from './components/Playlist';
 
 function App(): React.JSX.Element {
-
   const [isPlayerReady, setIsPlayerReady] = useState(false);
 
   useEffect(() => {
@@ -30,7 +20,7 @@ function App(): React.JSX.Element {
       let isSetup = await setupPlayer();
 
       const queue = await TrackPlayer.getQueue();
-      if(isSetup && queue.length <= 0) {
+      if (isSetup && queue.length <= 0) {
         await addTracks();
       }
 
@@ -40,17 +30,17 @@ function App(): React.JSX.Element {
     setup();
   }, []);
 
-  if(!isPlayerReady) {
+  if (!isPlayerReady) {
     return (
       <SafeAreaView style={styles.container}>
-        <ActivityIndicator size="large" color="#bbb"/>
+        <ActivityIndicator size="large" color="#bbb" />
       </SafeAreaView>
     );
   }
 
   return (
     <SafeAreaView style={styles.container}>
-      <Button title="Play" color="#777" onPress={() => TrackPlayer.skipToNext()}/>
+      <Playlist />
     </SafeAreaView>
   );
 }
@@ -60,7 +50,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     padding: 20,
-    backgroundColor: '#112'
+    backgroundColor: '#112',
   },
   sectionContainer: {
     marginTop: 32,
