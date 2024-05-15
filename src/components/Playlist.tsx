@@ -35,7 +35,7 @@ const Playlist = () => {
 
   return (
     <View>
-      <View style={styles.playlist}>
+      {/* <View style={styles.playlist}>
         <FlatList
           data={queue}
           renderItem={({item, index}) => (
@@ -46,7 +46,7 @@ const Playlist = () => {
             />
           )}
         />
-      </View>
+      </View> */}
       <Controls />
     </View>
   );

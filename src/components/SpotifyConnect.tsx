@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Button} from 'react-native';
 import {authorize} from 'react-native-app-auth';
+import SpotifySongSearch from './SpotifySongSearch';
 
 const SpotifyConnect = () => {
   // TO DO: remove this config data out of the client using https://github.com/bih/spotify-token-swap-service
@@ -15,19 +16,28 @@ const SpotifyConnect = () => {
       tokenEndpoint: 'https://accounts.spotify.com/api/token',
     },
   };
+
+  const [accessToken, setAccessToken] = useState<string>('');
+
   async function authorizeSpotify() {
     try {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const result = await authorize(config);
+      setAccessToken(result.accessToken);
       // result includes accessToken, accessTokenExpirationDate and refreshToken
-      console.log('Spotify access:', result);
+      console.log('Spotify access:', accessToken);
     } catch (error) {
       console.log(error);
     }
   }
 
   return (
-    <Button title="Connect to Spotify" onPress={() => authorizeSpotify()} />
+    <>
+      {!accessToken && (
+        <Button title="Connect to Spotify" onPress={authorizeSpotify} />
+      )}
+      {accessToken && <SpotifySongSearch token={accessToken} />}
+    </>
   );
 };
 
