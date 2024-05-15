@@ -11,6 +11,8 @@ import TrackPlayer from 'react-native-track-player';
 
 import {setupPlayer, addTracks} from './trackPlayerServices';
 import Playlist from './components/Playlist';
+import Header from './components/Header';
+import TrackProgress from './components/TrackProgress';
 
 function App(): React.JSX.Element {
   const [isPlayerReady, setIsPlayerReady] = useState(false);
@@ -40,6 +42,8 @@ function App(): React.JSX.Element {
 
   return (
     <SafeAreaView style={styles.container}>
+      <Header />
+      <TrackProgress />
       <Playlist />
     </SafeAreaView>
   );
