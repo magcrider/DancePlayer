@@ -7,8 +7,8 @@ const SpotifyConnect = () => {
   // TO DO: remove this config data out of the client using https://github.com/bih/spotify-token-swap-service
 
   const config = {
-    clientId: '47c0d4690d044eb29ed9be7fbe1c2238', // available on the app page
-    clientSecret: '3835785f5a314e4a8729457af383c28d', // click "show client secret" to see this
+    clientId: '', // available on the app page
+    clientSecret: '', // click "show client secret" to see this
     redirectUrl: 'co.magc.dance://oauth', // the redirect you defined after creating the app
     scopes: ['user-read-email', 'playlist-modify-public', 'user-read-private'], // the scopes you need to access
     serviceConfiguration: {
